@@ -1,6 +1,7 @@
 ---
 import astroLogo from '../assets/astro.svg';
 import background from '../assets/background.svg';
+import Card from '@components/Card.astro'
 ---
 
 <div id="container">
@@ -24,6 +25,9 @@ import background from '../assets/background.svg';
 					>
 				</a>
 			</section>
+			<ul role="list" class="link-card-grid">
+        <Card title="Hello Astro" time="2024-05-07" tags="javascript" />
+      </ul>
 		</section>
 	</main>
 
@@ -156,6 +160,13 @@ import background from '../assets/background.svg';
 		border-radius: 16px;
 		border: 1px solid white;
 	}
+
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
 
 	#news {
 		position: absolute;
