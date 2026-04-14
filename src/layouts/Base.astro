@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+export interface props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-slate-900 text-slate-400">
+    <div class="flex-block md:pd-8 mx-auto mt-4 max-w-xl p-4">
+        <div class="bg-white shadow rounded-lg p-4">
+            <slot />
+        </div>
+    </div>
+  </body>
+</html>
