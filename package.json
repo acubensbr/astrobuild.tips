@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^5.0.3",
     "@astrojs/ts-plugin": "^1.10.7",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.5",
