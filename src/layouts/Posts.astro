@@ -1,0 +1,90 @@
+---
+// import type { MarkdownLayoutProps } from 'astro';
+import type { CollectionEntry } from "astro:content";
+import Image from "astro/components/Image.astro";
+
+// type Props = MarkdownLayoutProps<{
+//   // Define frontmatter props here
+//   title: string;
+//   pubDate: Date;
+//   image: string;
+//   tags: string[];
+// }>;
+interface Props {
+  frontmatter: CollectionEntry<"tips">["data"];
+}
+const { frontmatter } = Astro.props;
+console.log(frontmatter);
+---
+
+<!-- Blog Article -->
+<div class="mx-auto max-w-3xl px-4 pt-6 pb-12 sm:px-6 lg:px-8 lg:pt-10">
+  <div class="max-w-2xl">
+    <!-- Avatar Media -->
+    <div class="mb-6 flex items-center justify-between">
+      <div class="flex w-full gap-x-5 sm:items-center sm:gap-x-3">
+        <div class="grow">
+          <div class="flex items-center justify-between gap-x-2">
+            <div>
+              <ul class="text-muted-foreground-1 text-xs">
+                <li
+                  class="relative inline-block pe-6 before:absolute before:end-2 before:top-1/2 before:size-1 before:-translate-y-1/2 before:rounded-full before:bg-gray-300 last:pe-0 last-of-type:before:hidden"
+                >
+                  {frontmatter.pubDate}
+                </li>
+                <li
+                  class="relative inline-block pe-6 before:absolute before:end-2 before:top-1/2 before:size-1 before:-translate-y-1/2 before:rounded-full before:bg-gray-300 last:pe-0 last-of-type:before:hidden"
+                >
+                  8 min read
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Avatar Media -->
+
+    <!-- Content -->
+    <div class="space-y-5 md:space-y-8">
+      <div class="space-y-3">
+        <h2 class="text-foreground text-2xl font-bold md:text-3xl">
+          {frontmatter.title}
+        </h2>
+      </div>
+
+      <figure>
+        <Image
+          class="w-full rounded-xl object-cover"
+          src={frontmatter.image}
+          alt={frontmatter.title}
+          width={800}
+          height={450}
+        />
+
+        <figcaption class="text-muted-foreground-1 mt-3 text-center text-sm">
+          A woman sitting at a table.
+        </figcaption>
+      </figure>
+
+      <p class="text-foreground text-lg">
+        <slot />
+      </p>
+
+      <div>
+        {
+          frontmatter.tags.map((item) => (
+            <a
+              class="text-foreground m-1 inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-2 text-sm hover:bg-gray-200 focus:bg-gray-200 focus:outline-hidden"
+              href="#"
+            >
+              {item}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <!-- End Content -->
+  </div>
+</div>
+<!-- End Blog Article -->
