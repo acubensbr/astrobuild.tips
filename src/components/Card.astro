@@ -1,22 +1,23 @@
 ---
-import { array, string } from 'astro:schema';
-
 export interface Props {
   title: string;
   pubDate: string;
   tags: string[];
+  slug: string;
 }
 
-const { title, pubDate, tags } = Astro.props;
+const { title, pubDate, tags, slug} = Astro.props;
 ---
 
 <!-- Card -->
 <div class="flex flex-row gap-4">
   <div class="bg-card border-card-line flex rounded-xl border shadow-2xs w-fit">
     <div class="p-4">
-      <h3 class="mt-0.5 text-foreground font-semibold">
-        {title}
-      </h3>
+      <a href=`/posts/${slug}`>
+        <h3 class="mt-0.5 text-foreground font-semibold">
+          {title}
+        </h3>
+      </a>
       <p class="text-muted-foreground-1 mt-1 text-xs font-medium uppercase">
         {pubDate}
       </p>
