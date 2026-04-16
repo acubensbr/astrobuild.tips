@@ -1,20 +1,13 @@
 ---
 // import type { MarkdownLayoutProps } from 'astro';
 import type { CollectionEntry } from "astro:content";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 
-// type Props = MarkdownLayoutProps<{
-//   // Define frontmatter props here
-//   title: string;
-//   pubDate: Date;
-//   image: string;
-//   tags: string[];
-// }>;
 interface Props {
   frontmatter: CollectionEntry<"tips">["data"];
 }
+
 const { frontmatter } = Astro.props;
-console.log(frontmatter);
 ---
 
 <!-- Blog Article -->
@@ -53,21 +46,26 @@ console.log(frontmatter);
         </h2>
       </div>
 
-      <figure>
-        <Image
-          class="w-full rounded-xl object-cover"
-          src={frontmatter.image}
-          alt={frontmatter.title}
-          width={800}
-          height={450}
-        />
+      {/* Condicional de TypeScript + Skeleton Loader de Tailwind */}
+      {frontmatter.image && (
+        <figure>
+          <div class="relative w-full aspect-video rounded-xl bg-gray-200 animate-pulse overflow-hidden">
+            <Image
+              class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-in-out"
+              src={frontmatter.image}
+              alt={frontmatter.title}
+              width={800}
+              height={450}
+              onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('animate-pulse', 'bg-gray-200');"
+            />
+          </div>
+          <figcaption class="text-muted-foreground-1 mt-3 text-center text-sm">
+            Imagen de referencia.
+          </figcaption>
+        </figure>
+      )}
 
-        <figcaption class="text-muted-foreground-1 mt-3 text-center text-sm">
-          A woman sitting at a table.
-        </figcaption>
-      </figure>
-
-      <p class="text-foreground text-lg">
+      <p class="text-foreground text-lg prose max-w-none">
         <slot />
       </p>
 
