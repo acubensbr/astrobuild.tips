@@ -1,12 +1,11 @@
 ---
-
 import background from "../assets/background.svg";
 import Card from "@components/Card.astro";
 import Header from "@components/Header.astro";
 import Hero from "@components/Hero.astro";
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-const posts = await getCollection("hello");
+const posts = await getCollection("tips");
 ---
 
 <div id="container">
@@ -14,12 +13,19 @@ const posts = await getCollection("hello");
   <main>
     <section id="welcome">
       <Header />
-      <Hero />  
+      <Hero />
       <ul role="list" class="link-card-grid">
         <!-- <Card title="Hello Astro" time="2024-05-07" tags="javascript" /> -->
-        {posts.map(item => (
-          <Card title={item?.data.title} pubDate={item?.data.pubDate} tags={item?.data.tags} />
-        ))}
+        {
+          posts.map((item) => (
+            <Card
+              title={item?.data.title}
+              pubDate={item?.data.pubDate.valueOf().toString()}
+              tags={item?.data.tags}
+              slug=""
+            />
+          ))
+        }
       </ul>
     </section>
   </main>
