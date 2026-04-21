@@ -1,6 +1,6 @@
 ---
 title: "Hello World"
-pubDate: "2026-04-10"
+pubDate: 2026-04-10
 description: "Hello this is my first recomendation"
 image: "https://picsum.photos/560/400"
 tags: ["astro","javascript"]

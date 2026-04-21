@@ -1,6 +1,6 @@
 ---
 title: "Hello Javascript"
-pubDate: "2026-04-07"
+pubDate: 2026-04-07
 description: "Hello this is my first recomendation"
 image: "https://picsum.photos/560/400"
 tags: ["astro","javascript"]
